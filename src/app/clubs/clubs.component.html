@@ -1,11 +1,18 @@
 <form (ngSubmit)="onSubmit(f)" #f="ngForm">
 <div>
+  <li *ngFor="let club of (clubs);">
+    <button onclick="joinClub(club)">
+  </li>
+</div> 
+
+
+<div>
     <label >clubname</label>
      <input type="text"
           id="clubname"
           [(ngModel)]="club.name"
           name="club name"
           required>
-  </div>    
+</div>    
 <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
 </form>

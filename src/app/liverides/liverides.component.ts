@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WindowRef } from './WindowRef';
+import { WindowRef } from '../WindowRef';
 import { LiveridesService } from '../liverides.service';
 import { Subscription } from 'rxjs/Subscription';
 
