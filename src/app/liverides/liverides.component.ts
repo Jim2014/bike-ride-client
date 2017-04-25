@@ -9,6 +9,7 @@ import {WindowRef} from './WindowRef';
 export class LiveridesComponent implements OnInit {
 
   constructor(private winRef: WindowRef) { 
+    
     winRef.nativeWindow.ridesPositons = [
         {lat: 52.511, lng: 13.447,title:"ride 1"},
         {lat: 52.549, lng: 13.422,title:"ride 2"},
