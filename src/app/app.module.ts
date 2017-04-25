@@ -16,6 +16,7 @@ import { ClubsComponent } from './clubs/clubs.component';
 import { LiveridesComponent } from './liverides/liverides.component';
 import { MessageComponent } from './message/message.component';
 import { WindowRef } from './liverides/WindowRef';
+import { LiveridesService } from './liverides.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { WindowRef } from './liverides/WindowRef';
     RouterModule.forRoot(ROUTES)
     
   ],
-  providers: [AuthService,WindowRef],
+  providers: [AuthService,WindowRef,LiveridesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,30 +19,37 @@
   //window.ridesPositons will be set by LiveRidesService periodly(per 1 second)
   var liveRidesMap;
   function initMap() {
-        var mapElement= document.getElementById('map');
-        if(!mapElement)
-          return;
-        if(!window.ridesPositons||window.ridesPositons.length==0)
-          return;
-        liveRidesMap = new google.maps.Map(mapElement, {
-          zoom: 12,
-          center: { lat: window.ridesPositons[0].lat, lng: window.ridesPositons[0].lng }
-        });
-      }
+    var mapElement = document.getElementById('map');
+    if (!mapElement)
+      return;
+    if (!window.ridesPositons || window.ridesPositons.length == 0)
+      return;
+    liveRidesMap = new google.maps.Map(mapElement, {
+      zoom: 12,
+      center: { lat: window.ridesPositons[0].lat, lng: window.ridesPositons[0].lng }
+    });
+  }
   ShowLiveRidesMap();
   function ShowLiveRidesMap() {
-      var markers = [];
-     
-      setInterval(intervalFunc, 1000);
+    var markers = [];
 
-      function intervalFunc() {
-        if(!liveRidesMap) initMap();
-        if(!window.ridesPositons||window.ridesPositons.length==0)
-          return;
-        clearMarkers();
-        for (var i = 0; i < window.ridesPositons.length; i++) {
-          addMarker(window.ridesPositons[i]);
-        }
+    setInterval(intervalFunc, 1000);
+
+    function intervalFunc() {
+      updateCurentUserPosition()
+      if (!liveRidesMap) initMap();
+      if (!window.ridesPositons || window.ridesPositons.length == 0)
+        return;
+      clearMarkers();
+      for (var i = 0; i < window.ridesPositons.length; i++) {
+        addMarker(window.ridesPositons[i]);
+      }
+    }
+    function updateCurentUserPosition() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+          window.curUserPositon = { lat: position.coords.latitude, long: position.coords.longitude };
+        });
       }
 
       function addMarker(position) {
@@ -59,7 +66,8 @@
         }
         markers = [];
       }
-  };
+    };
+
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8&callback=initMap">
 
