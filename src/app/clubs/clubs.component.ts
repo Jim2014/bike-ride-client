@@ -6,28 +6,56 @@ import { ClubsService } from '../clubs.service';
   styleUrls: ['./clubs.component.css']
 })
 export class ClubsComponent implements OnInit {
-  clubs:[string];
+  clubs:[any];
   constructor(public club:ClubsService) { }
 
   ngOnInit() {
-    this.club.getClubsNearby().subscribe(
+
+    // let self = this;
+    // //mock
+    // this.clubs = [
+    //   {name : "club1", id : 1},
+    //   {name : "club2", id : 2},
+    //   {name : "club3", id : 3},
+    // ]
+    // navigator.geolocation.getCurrentPosition(function(position) {      
+    //   self.club.updateLocation(position.coords);
+    //   self.club.getClubsNearby().subscribe(
+    //     res => {
+    //       let data:any = res.json();
+    //       console.log(data);
+    //       // this.clubs = data.clubs;        
+    //     },
+    //     err => console.log(err)
+    //   )              
+    // });
+  }
+
+  onclick_joinClub(clubId:number) {
+    console.log("onclick_joinClub(club) {")
+    console.dir(clubId);
+
+    // server todo
+    this.club.join(clubId).subscribe(
       res => {
-        let data:any = res.json;
+        console.log("join success!!!");
+        let data:any = res.json();
         console.log(data);
-        this.clubs = data.clubs;
-        
       },
-      err => console.log(err)
-    )  
+      err => console.log(err)      
+    );    
+
+    // redirect
   }
 
   onSubmit(form) {
+    console.log("create club");  
     console.log(form.value);  
-    this.club.createClub().subscribe(
+    this.club.createClub(form).subscribe(        
       res => {
+        console.log("create club res");
         let data:any = res.json;
         console.log(data);
-
       },
       err => console.log(err)      
     );
