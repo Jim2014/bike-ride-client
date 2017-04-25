@@ -15,6 +15,7 @@ import { CallbackComponent } from './callback/callback.component';
 import { ClubsComponent } from './clubs/clubs.component';
 import { LiveridesComponent } from './liverides/liverides.component';
 import { MessageComponent } from './message/message.component';
+import { WindowRef } from './liverides/WindowRef';
 
 @NgModule({
   declarations: [
@@ -31,8 +32,9 @@ import { MessageComponent } from './message/message.component';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES)
+    
   ],
-  providers: [AuthService],
+  providers: [AuthService,WindowRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
