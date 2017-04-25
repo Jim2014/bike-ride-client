@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./clubs.component.css']
 })
 export class ClubsComponent implements OnInit {
+  club = {
+    name: '',
+  };
 
   constructor() { }
 
   ngOnInit() {
+
   }
+
+  onSubmit(form) {
+    console.log(form.value);
+  }  
 
 }

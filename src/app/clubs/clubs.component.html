@@ -1,3 +1,11 @@
-<p>
-  clubs works!
-</p>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+<div>
+    <label >clubname</label>
+     <input type="text"
+          id="clubname"
+          [(ngModel)]="club.name"
+          name="club name"
+          required>
+  </div>    
+<button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+</form>
