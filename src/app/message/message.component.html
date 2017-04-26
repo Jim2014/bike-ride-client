@@ -4,7 +4,10 @@
  <label>from</label>
  <input type="text" class="form-control" [(ngModel)]="myName" name="myName" placeholder="your name" required="" />
  <label>to</label>
- <input type="text" class="form-control" [(ngModel)]="otherName" name="otherName" placeholder="other name" required="" />
+ <!--<input type="text" class="form-control" [(ngModel)]="otherName" name="otherName" placeholder="other name" required="" />-->
+  <select class="form-control" [(ngModel)]="allUsers" name="room" required="">
+    <option *ngFor="let user of allUsers">{{user.nickname}}</option>
+  </select>
  <label>message</label>
  <input type="text" class="form-control" [(ngModel)]="message" name="message" placeholder="message" required="" />
  <button (click)="sendMessage()">send</button>
