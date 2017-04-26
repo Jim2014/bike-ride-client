@@ -15,9 +15,11 @@ import {CallbackComponent} from './callback/callback.component';
 import {ClubsComponent} from './clubs/clubs.component';
 import {LiveridesComponent} from './liverides/liverides.component';
 import {MessageComponent} from './message/message.component';
-import {ProfileService} from './profile.service';
+import { ProfileService } from './profile.service';
 import { WindowRef } from './WindowRef';
 import { LiveridesService } from './liverides.service';
+import { ClubsService } from './clubs.service';
+import { MessageService } from './message.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { LiveridesService } from './liverides.service';
     RouterModule.forRoot(ROUTES),
     
   ],
-  providers: [AuthService, ProfileService,WindowRef,LiveridesService],
+  providers: [AuthService, ProfileService,WindowRef,LiveridesService,
+  MessageService,ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

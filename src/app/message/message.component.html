@@ -1,3 +1,10 @@
 <p>
   message works!
 </p>
+ <input type="text" class="form-control" [(ngModel)]="myName" name="myName" placeholder="your name" required="" />
+ <input type="text" class="form-control" [(ngModel)]="otherName" name="otherName" placeholder="other name" required="" />
+ <input type="text" class="form-control" [(ngModel)]="message" name="message" placeholder="message" required="" />
+ <button (click)="sendMessage()">send</button>
+  <ul>
+    <li *ngFor="let msg of messageList">Form {{msg.from}} : {{msg.body}}</li>
+  </ul>
