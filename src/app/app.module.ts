@@ -16,6 +16,7 @@ import {ClubsComponent} from './clubs/clubs.component';
 import {LiveridesComponent} from './liverides/liverides.component';
 import {MessageComponent} from './message/message.component';
 import {ProfileService} from './profile.service';
+import { WindowRef } from './WindowRef';
 
 @NgModule({
   declarations: [
@@ -32,8 +33,9 @@ import {ProfileService} from './profile.service';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
+    
   ],
-  providers: [AuthService, ProfileService],
+  providers: [AuthService, ProfileService,WindowRef],
   bootstrap: [AppComponent]
 })
 export class AppModule {
