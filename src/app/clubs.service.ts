@@ -3,6 +3,7 @@ import {Http} from "@angular/http";
 import { WindowRef } from './WindowRef';
 import { AuthService } from './auth/auth.service';
 import { ClubModel } from "app/clubs/clubModel";
+import { APP_CONFIG } from './app.config';
 @Injectable()
 export class ClubsService {
   private location:any;
@@ -20,7 +21,7 @@ export class ClubsService {
     data.loc = [];
     data.loc[0] = this.location.latitude;
     data.loc[1] = this.location.longitude;    
-    return this.http.post("http://localhost:3000/clubs/nearby", data);            
+    return this.http.post(`${APP_CONFIG.serverDomain}clubs/nearby`, data);            
   }
 
   public createClub(name:any) {
@@ -30,7 +31,7 @@ export class ClubsService {
     club.loc[0] = this.location.latitude;
     club.loc[1] = this.location.longitude;
     club.owner = this.getUserName();
-    return this.http.post("http://localhost:3000/clubs/create", club);
+    return this.http.post(`${APP_CONFIG.serverDomain}clubs/create`, club);
   }
 
   public join(club:ClubModel) {
@@ -39,7 +40,7 @@ export class ClubsService {
     let p :any = {};
     data.userId = this.getUserName();
     data.club = club;
-    return this.http.post("http://localhost:3000/clubs/join", data);
+    return this.http.post(`${APP_CONFIG.serverDomain}clubs/join`, data);
   }
 
   public getUserName () {

@@ -1,16 +1,27 @@
 <p>
-  message works!
+  Hi {{myName}} , please select a user and send a message.
 </p>
- <label>from</label>
- <input type="text" class="form-control" [(ngModel)]="myName" name="myName" placeholder="your name" required="" />
- <label>to</label>
+  <label>Message To</label>
  <!--<input type="text" class="form-control" [(ngModel)]="otherName" name="otherName" placeholder="other name" required="" />-->
-  <select class="form-control" [(ngModel)]="allUsers" name="room" required="">
+  <select class="form-control" [(ngModel)]="otherName" name="room" required="">
+    <option> Select a user</option>
     <option *ngFor="let user of allUsers">{{user.nickname}}</option>
   </select>
- <label>message</label>
- <input type="text" class="form-control" [(ngModel)]="message" name="message" placeholder="message" required="" />
- <button (click)="sendMessage()">send</button>
-  <ul>
-    <li *ngFor="let msg of messageList">Form {{msg.from}} : {{msg.body}}</li>
-  </ul>
+ <label>Message</label>
+ <input type="textaarea" class="form-control" [(ngModel)]="message" name="message" placeholder="message" required="" />
+ <button class="btn btn-primary btn-margin" (click)="sendMessage()">Send</button>
+ <br>
+ <hr>
+ <br>
+
+  <div class = "panel panel-default" *ngFor="let msg of messageList">
+   <div class = "panel-heading">
+      <h3 class = "panel-title">
+         From:<b>{{msg.from}}</b>{{msg.time}} 
+      </h3>
+   </div>
+   
+   <div class = "panel-body">
+      {{msg.body}}
+   </div>
+</div>

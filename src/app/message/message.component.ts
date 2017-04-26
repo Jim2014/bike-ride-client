@@ -4,6 +4,7 @@ import * as io from "socket.io-client";
 import { AuthService } from '../auth/auth.service';
 import { MessageService } from '../message.service';
 import {ProfileService} from "../profile.service";
+import { APP_CONFIG } from '../app.config';
 
 
 @Component({
@@ -14,11 +15,11 @@ import {ProfileService} from "../profile.service";
 export class MessageComponent implements OnInit {
 
   allUsers: any;
-  myName = 'user';
-  otherName = 'user';
+  myName = '';
+  otherName = '';
   message = '';
   messageList = [];
-  socket = io('http://localhost:4000');
+  socket = io(APP_CONFIG.socketURL);
   constructor(private auth: AuthService, private msgSvr: MessageService,private profileService: ProfileService) {
     this.myName = auth.userName;
 
@@ -35,7 +36,9 @@ export class MessageComponent implements OnInit {
       self.msgSvr.getChats(userName).subscribe(
         response => {
           console.log('response1', response.json());
-          self.messageList = response.json();
+          self.messageList = [];
+          for( let m of response.json()) 
+            self.messageList.unshift(m);
 
         },
         err => console.log(err)
@@ -46,7 +49,7 @@ export class MessageComponent implements OnInit {
     this.socket.on('new-message', function (data) {
       console.log('receive msg', data);
       if (data.message.to === this.myName) {
-        this.messageList.push(data.message);
+        this.messageList.unshift(data.message);
       }
     }.bind(this));
 
@@ -68,7 +71,8 @@ export class MessageComponent implements OnInit {
     let curMsg = {
       from: this.myName,
       to: this.otherName,
-      body: this.message
+      body: this.message,
+      time:new Date()
     };
     console.log('sendMessage', curMsg);
     this.socket.emit('save-message', curMsg);
