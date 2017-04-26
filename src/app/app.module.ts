@@ -13,14 +13,17 @@ import {AuthService} from './auth/auth.service';
 import {ProfileComponent} from './profile/profile.component';
 import {CallbackComponent} from './callback/callback.component';
 import {ClubsComponent} from './clubs/clubs.component';
+import { ClubProfileComponent } from './club-profile/club-profile.component';
 import {LiveridesComponent} from './liverides/liverides.component';
 import {MessageComponent} from './message/message.component';
-import { ProfileService } from './profile.service';
-import { WindowRef } from './WindowRef';
-import { LiveridesService } from './liverides.service';
-import { ClubsService } from './clubs.service';
-import { MessageService } from './message.service';
-import { ClubProfileComponent } from './club-profile/club-profile.component';
+
+import {ProfileService} from './profile.service';
+import {WindowRef} from './WindowRef';
+import {LiveridesService} from './liverides.service';
+import {MycanactivateGuard} from "./mycanactivate.guard";
+import {ClubsService} from './clubs.service';
+import {MessageService} from './message.service';
+
 
 @NgModule({
   declarations: [
@@ -38,10 +41,11 @@ import { ClubProfileComponent } from './club-profile/club-profile.component';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
-    
+
   ],
-  providers: [AuthService, ProfileService,WindowRef,LiveridesService,
-  MessageService,ProfileService, ClubsService],
+
+  providers: [AuthService, ProfileService,ClubsService,  WindowRef, LiveridesService, MessageService, ProfileService, MycanactivateGuard],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {
