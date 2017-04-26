@@ -18,6 +18,7 @@ import {MessageComponent} from './message/message.component';
 import {ProfileService} from './profile.service';
 import { WindowRef } from './WindowRef';
 import { LiveridesService } from './liverides.service';
+import {MycanactivateGuard} from "./mycanactivate.guard";
 
 @NgModule({
   declarations: [
@@ -34,9 +35,9 @@ import { LiveridesService } from './liverides.service';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
-    
+
   ],
-  providers: [AuthService, ProfileService,WindowRef,LiveridesService],
+  providers: [AuthService, ProfileService, WindowRef, LiveridesService, MycanactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
