@@ -16,9 +16,11 @@ import {ClubsComponent} from './clubs/clubs.component';
 import {LiveridesComponent} from './liverides/liverides.component';
 import {MessageComponent} from './message/message.component';
 import {ProfileService} from './profile.service';
-import { WindowRef } from './WindowRef';
-import { LiveridesService } from './liverides.service';
+import {WindowRef} from './WindowRef';
+import {LiveridesService} from './liverides.service';
 import {MycanactivateGuard} from "./mycanactivate.guard";
+import {ClubsService} from './clubs.service';
+import {MessageService} from './message.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import {MycanactivateGuard} from "./mycanactivate.guard";
     RouterModule.forRoot(ROUTES),
 
   ],
-  providers: [AuthService, ProfileService, WindowRef, LiveridesService, MycanactivateGuard],
+  providers: [AuthService, ProfileService, WindowRef, LiveridesService, MessageService, ProfileService, MycanactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

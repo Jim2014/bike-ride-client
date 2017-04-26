@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as io from "socket.io-client";
 
 @Component({
   selector: 'app-message',
@@ -7,9 +8,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessageComponent implements OnInit {
 
-  constructor() { }
+  myName = 'user';
+  otherName ='user';
+  message = '';
+  messageList = [];
+  socket = io('http://localhost:4000');
 
   ngOnInit() {
+    
+    this.socket.on('new-message', function (data) {
+       console.log('receive msg',data);
+      if(data.message.to === this.myName) {
+        this.messageList.push(data.message);
+      }
+    }.bind(this));
+  }
+
+  sendMessage() {
+    let curMsg = {
+      from:this.myName,
+      to:this.otherName,
+      body:this.message
+    };
+    console.log('sendMessage',curMsg);
+    this.socket.emit('save-message', curMsg);
   }
 
 }

@@ -8,15 +8,20 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+      if (navigator.geolocation) {          
+          navigator.geolocation.getCurrentPosition(function (position) {
+          window.curUserPositon = { lat: position.coords.latitude, long: position.coords.longitude };
+        })};
+  </script>
 </head>
 
 <body>
   <app-root>Loading...</app-root>
 </body>
 
+
 <script>
-  //show live rides map, refresh every second
-  //window.ridesPositons will be set by LiveRidesService periodly(per 1 second)
   var liveRidesMap;
   function initMap() {
     var mapElement = document.getElementById('map');
@@ -32,7 +37,7 @@
   ShowLiveRidesMap();
   function ShowLiveRidesMap() {
     var markers = [];
-
+    updateCurentUserPosition();
     setInterval(intervalFunc, 1000);
 
     function intervalFunc() {
@@ -60,10 +65,10 @@
         markers = [];
       }
     };
+  }
+ </script>
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8&callback=initMap">
+ </script>
 
-</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8&callback=initMap">
-
-</script>
 
 </html>
