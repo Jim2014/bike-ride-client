@@ -17,6 +17,7 @@ import {LiveridesComponent} from './liverides/liverides.component';
 import {MessageComponent} from './message/message.component';
 import {ProfileService} from './profile.service';
 import { WindowRef } from './WindowRef';
+import { LiveridesService } from './liverides.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { WindowRef } from './WindowRef';
     RouterModule.forRoot(ROUTES),
     
   ],
-  providers: [AuthService, ProfileService,WindowRef],
+  providers: [AuthService, ProfileService,WindowRef,LiveridesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
