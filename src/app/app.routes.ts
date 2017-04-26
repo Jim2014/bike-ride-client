@@ -9,7 +9,8 @@ import { MessageComponent } from './message/message.component';
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'callback', redirectTo: '' },
+  { path: 'callback', component: CallbackComponent },
+  // { path: 'callback', redirectTo: 'profile' },
   { path: 'clubs', component: ClubsComponent },
   { path: 'liverides', component: LiveridesComponent },
   { path: 'message', component: MessageComponent },
