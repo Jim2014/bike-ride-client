@@ -33,6 +33,9 @@ export class CallbackComponent implements OnInit {
       }
     }
     function save(data) {
+      self.auth.userId = data.sub;
+      self.auth.userName = data.nickname;
+      self.auth.logined.emit({userId:data.sub,userName :data.nickname});
       console.log('data', data);
       self.profileServer.saveProfile(data).subscribe(
         response => console.log(response),

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,EventEmitter } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { AUTH_CONFIG } from './auth0-variables';
 import Auth0Lock from 'auth0-lock';
@@ -6,7 +6,9 @@ import 'rxjs/add/operator/filter';
 
 @Injectable()
 export class AuthService {
-
+   logined:EventEmitter<{userId:String,userName:String}> = new EventEmitter();
+   userId="";
+   userName="";
   lock = new Auth0Lock(AUTH_CONFIG.clientID, AUTH_CONFIG.domain, {
     oidcConformant: true,
     autoclose: true,
