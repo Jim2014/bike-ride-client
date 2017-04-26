@@ -16,6 +16,7 @@ export class LiveridesComponent implements OnInit {
   constructor(private winRef: WindowRef, private liveRidesSvr: LiveridesService, private auth: AuthService) {
     let self = this;
     setInterval(simuRefreshLiveRides, 1000);
+    //setInterval(refreshLiveRides, 1000);
 
     function simuRefreshLiveRides() {
 
@@ -69,11 +70,12 @@ export class LiveridesComponent implements OnInit {
         //response => console.log(response),
         //err => console.log(err)
       );
-      self.liveRidesSvr.getLiveRidesPosions().subscribe(
-        response => {
-         // console.log('getLiveRidesPosions',response.json())
-        }
-      );
+      
+      // self.liveRidesSvr.getLiveRidesPosions().subscribe(
+      //   response => {
+      //    // console.log('getLiveRidesPosions',response.json())
+      //   }
+      // );
 
     }, 10000);
   }

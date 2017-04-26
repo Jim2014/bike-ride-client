@@ -11,7 +11,7 @@ export class ClubsService {
 
   public getClubsNearby() {
     //todo http    
-    return this.http.get("localhost:3000/clubs");
+    return this.http.get("localhost:3000/clubs", this.pos);
   }
 
   public createClub() {
