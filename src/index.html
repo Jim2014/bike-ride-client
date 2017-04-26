@@ -37,7 +37,7 @@
   ShowLiveRidesMap();
   function ShowLiveRidesMap() {
     var markers = [];
-    updateCurentUserPosition();
+
     setInterval(intervalFunc, 1000);
 
     function intervalFunc() {
@@ -65,7 +65,7 @@
         markers = [];
       }
     };
-  }
+  
  </script>
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQZB1ebGaBuUrgmkPaj-SxdkHm_TXtx8&callback=initMap">
  </script>

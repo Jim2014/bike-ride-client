@@ -20,6 +20,7 @@ import { WindowRef } from './WindowRef';
 import { LiveridesService } from './liverides.service';
 import { ClubsService } from './clubs.service';
 import { MessageService } from './message.service';
+import { ClubProfileComponent } from './club-profile/club-profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MessageService } from './message.service';
     CallbackComponent,
     ClubsComponent,
     LiveridesComponent,
-    MessageComponent
+    MessageComponent,
+    ClubProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,7 @@ import { MessageService } from './message.service';
     
   ],
   providers: [AuthService, ProfileService,WindowRef,LiveridesService,
-  MessageService,ProfileService],
+  MessageService,ProfileService, ClubsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

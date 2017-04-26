@@ -1,0 +1,34 @@
+<div class="panel panel-default profile-area">
+  <div class="panel-heading">
+    <h3>" {{curClub.name}} " Club Profile</h3>
+  </div>
+  <div class="panel-body">
+    <!--<img src="{{curClub.picture}}" class="avatar" alt="avatar">-->
+    <div>
+      <label><i class="glyphicon glyphicon-user"></i> location </label>
+      <h3 class="nickname">{{ curClub.loc }}</h3>
+    </div>
+    <pre class="full-profile">{{ curClub| json }}</pre>
+  </div>
+
+  <div>
+  <li *ngFor="let e of (curClub.events)  let i = index;">
+    {{e}}
+    <button value = "{{i}}" class="btn btn-primary" (click)="onclick_joinEvent(bbb.value)" #bbb>join this event!</button>
+  </li>
+</div> 
+
+<div>
+    <label >eventName</label>
+     <input type="text"
+          id="name"
+          [(ngModel)]="eventName"
+          name="name"
+          required />
+    <button  (click)="onclick_createEvent()" class="btn btn-primary"  >CREATE Event</button>
+</div>
+
+</div>
+  
+
+
