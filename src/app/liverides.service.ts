@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { AuthService } from './auth/auth.service';
-import { WindowRef } from './liverides/WindowRef';
+
 
 
 @Injectable()
 export class LiveridesService {
 
-  constructor(private http: Http, private winRef: WindowRef) {
+  constructor(private http: Http) {
 
   }
   getLiveRidesPosions() {
