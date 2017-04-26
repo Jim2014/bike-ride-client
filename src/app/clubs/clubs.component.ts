@@ -12,7 +12,7 @@ export class ClubsComponent implements OnInit {
   clubs:[ClubModel];
   
   clubName = "aa";
-  canCreate = false;
+  canCreate = true;
   
   constructor(public club:ClubsService, public router : Router) { }
 
@@ -24,6 +24,7 @@ export class ClubsComponent implements OnInit {
       self.club.getClubsNearby().subscribe(
         res => {
           let data:any = res.json();
+          console.log("update location");
           console.log(data);
           self.clubs = data;   
           self.canCreate = self.clubs.length == 0;     

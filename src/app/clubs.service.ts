@@ -3,6 +3,7 @@ import {Http} from "@angular/http";
 import { WindowRef } from './WindowRef';
 import { AuthService } from './auth/auth.service';
 import { ClubModel } from "app/clubs/clubModel";
+import { EventModel } from "app/club-profile/EventModel";
 @Injectable()
 export class ClubsService {
   private location:any;
@@ -42,9 +43,21 @@ export class ClubsService {
     return this.http.post("http://localhost:3000/clubs/join", data);
   }
 
-  public getUserName () {
+  public getUserName() {
     return "testUser" + Math.random() * 10;
   }
 
+  public createEvent(eventName:string) {
+    let event = new EventModel();
+    event.clubId = this.curClub._id; 
+    event.name = eventName;
+    event.loc = [this.location.latitude, this.location.longitude];
+    event.members.push(this.getUserName());
+    event.createTime = new Date();
+    return this.http.post("http://localhost:3000/events/create", event);
+  }
 
+  public joinEvent(clubModel:ClubModel) {
+    return this.http.post("http://localhost:3000/events/join", clubModel);
+  }
 }
