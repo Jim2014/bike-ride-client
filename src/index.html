@@ -41,7 +41,6 @@
     setInterval(intervalFunc, 1000);
 
     function intervalFunc() {
-      updateCurentUserPosition()
       if (!liveRidesMap) initMap();
       if (!window.ridesPositons || window.ridesPositons.length == 0)
         return;
@@ -50,13 +49,7 @@
         addMarker(window.ridesPositons[i]);
       }
     }
-    function updateCurentUserPosition() {
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function (position) {
-          window.curUserPositon = { lat: position.coords.latitude, long: position.coords.longitude };
-        });
-      }
-
+    
       function addMarker(position) {
         markers.push(new google.maps.Marker({
           position: position,
