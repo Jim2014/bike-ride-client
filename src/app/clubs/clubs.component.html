@@ -1,18 +1,16 @@
 <div>
   <li *ngFor="let club of (clubs)  let i = index;">
     {{club.name}}
-    <button value = "{{i}}"  (click)="onclick_joinClub(bbb.value)" #bbb>join us!</button>
+    <button value = "{{i}}" class="btn btn-primary" (click)="onclick_joinClub(bbb.value)" #bbb>join us!</button>
   </li>
 </div> 
 
-<form (ngSubmit)="onSubmit(f)" #f="ngForm">
-<div>
+<div *ngIf = "canCreate">
     <label >clubname</label>
      <input type="text"
           id="name"
           [(ngModel)]="clubName"
           name="name"
           required />
+    <button  (click)="onclick_createClub()" class="btn btn-primary"  >CREATE CLUB</button>
 </div>   
-<button type="submit" class="btn btn-primary" [disabled]="!f.valid">CREATE CLUB</button>
-</form>

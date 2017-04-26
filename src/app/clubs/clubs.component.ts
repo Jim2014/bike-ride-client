@@ -2,15 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ClubsService } from '../clubs.service';
+import { ClubModel } from "app/clubs/clubModel";
 @Component({
   selector: 'app-clubs',
   templateUrl: './clubs.component.html',
   styleUrls: ['./clubs.component.css']
 })
 export class ClubsComponent implements OnInit {
-  clubs:[any];
+  clubs:[ClubModel];
   
-  clubName = "club name";
+  clubName = "aa";
+  canCreate = false;
   
   constructor(public club:ClubsService, public router : Router) { }
 
@@ -23,7 +25,9 @@ export class ClubsComponent implements OnInit {
         res => {
           let data:any = res.json();
           console.log(data);
-          self.clubs = data;        
+          self.clubs = data;   
+          self.canCreate = self.clubs.length == 0;     
+                    
         },
         err => console.log(err)
       )              
@@ -41,20 +45,18 @@ export class ClubsComponent implements OnInit {
         console.log("join success!!!");
         let data:any = res.json();
         console.log(data);
-        self.router.navigate([""])
+
+        // redirect
+        self.router.navigate(["clubprofile"]);
       },
       err => console.log(err)      
     );    
-
-    // redirect
-    
-
   }
 
-  onSubmit(form) {
+  onclick_createClub() {
     console.log("create club");  
-    console.log(form.value.name);  
-    this.club.createClub(form.name).subscribe(        
+    console.log(this.clubName);  
+    this.club.createClub(this.clubName).subscribe(        
       res => {
         console.log("create club res");
         let data:any = res.json;
