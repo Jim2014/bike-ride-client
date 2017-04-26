@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Rx';
+import { APP_CONFIG } from './app.config';
 
 @Injectable()
 export class ProfileService {
@@ -8,16 +9,16 @@ export class ProfileService {
   constructor(private http: Http) {
   }
 
-  getProfile() {
+  getAllUsers() {
 
-    return this.http.get('http://localhost:3000/users');
+    return this.http.get(`${APP_CONFIG.serverDomain}users`);
 
   }
 
   saveProfile(profile) {
     const headers = new Headers({'Content-Type': 'application/json'});
     const options = new RequestOptions({headers: headers});
-    return this.http.post('http://localhost:3000/users', profile);
+    return this.http.post(`${APP_CONFIG.serverDomain}users`, profile);
   }
 
 }

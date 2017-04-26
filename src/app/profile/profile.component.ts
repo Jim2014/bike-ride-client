@@ -12,7 +12,6 @@ import {Observable} from "rxjs/Observable";
 export class ProfileComponent implements OnInit {
 
   profile: any;
-  done = false;
 
   constructor(public auth: AuthService, private router: Router) {
     auth.handleAuthentication();

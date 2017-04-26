@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { AuthService } from './auth/auth.service';
+import { APP_CONFIG } from './app.config';
 
 
 
@@ -12,10 +13,10 @@ export class LiveridesService {
   }
   getLiveRidesPosions() {
     const self = this;
-    return self.http.get("http://localhost:3000/liverides");
+    return self.http.get(`${APP_CONFIG.serverDomain}liverides`);
   }
   updateMyPos(data) {
-    return this.http.post("http://localhost:3000/liverides/userPos",data);
+    return this.http.post(`${APP_CONFIG.serverDomain}liverides/userPos`,data);
   }
 
 
