@@ -13,18 +13,28 @@ export class ClubsService {
   }
     
   public getClubsNearby() {
-    return this.http.post("http://localhost:3000/clubs/nearby", this.location);            
+    let data : any = {};
+    data.loc = [];
+    data.loc[0] = this.location.latitude;
+    data.loc[1] = this.location.longitude;    
+    return this.http.post("http://localhost:3000/clubs/nearby", data);            
   }
 
-  public createClub(club:any) {
+  public createClub(name:string) {
+    let club : any;
+    club.name = name;
     club.loc = [];
     club.loc[0] = this.location.latitude;
     club.loc[1] = this.location.longitude;
-    return this.http.post("http://localhost:3000/clubs", club);
+    // return this.http.post("http://localhost:3000/clubs/create", club);
+    return this.http.post("http://localhost:3000/clubs/create", "");
   }
 
-  public join(clubId : number) {
-    return this.http.post("http://localhost:3000/clubs/join", clubId);
+  public join(club) {
+    let data : any = {};
+    data.userId = 111;
+    data.club = club;
+    return this.http.post("http://localhost:3000/clubs/join", data);
   }
 
 

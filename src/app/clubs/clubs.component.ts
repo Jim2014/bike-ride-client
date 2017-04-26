@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { ClubsService } from '../clubs.service';
 @Component({
   selector: 'app-clubs',
@@ -7,51 +9,52 @@ import { ClubsService } from '../clubs.service';
 })
 export class ClubsComponent implements OnInit {
   clubs:[any];
-  constructor(public club:ClubsService) { }
+  
+  clubName = "club name";
+  
+  constructor(public club:ClubsService, public router : Router) { }
 
   ngOnInit() {
 
-    // let self = this;
-    // //mock
-    // this.clubs = [
-    //   {name : "club1", id : 1},
-    //   {name : "club2", id : 2},
-    //   {name : "club3", id : 3},
-    // ]
-    // navigator.geolocation.getCurrentPosition(function(position) {      
-    //   self.club.updateLocation(position.coords);
-    //   self.club.getClubsNearby().subscribe(
-    //     res => {
-    //       let data:any = res.json();
-    //       console.log(data);
-    //       // this.clubs = data.clubs;        
-    //     },
-    //     err => console.log(err)
-    //   )              
-    // });
+    let self = this;
+    navigator.geolocation.getCurrentPosition(function(position) {      
+      self.club.updateLocation(position.coords);
+      self.club.getClubsNearby().subscribe(
+        res => {
+          let data:any = res.json();
+          console.log(data);
+          self.clubs = data;        
+        },
+        err => console.log(err)
+      )              
+    });
   }
 
-  onclick_joinClub(clubId:number) {
+  onclick_joinClub(index:any) {
     console.log("onclick_joinClub(club) {")
-    console.dir(clubId);
+    console.dir(index);
 
     // server todo
-    this.club.join(clubId).subscribe(
+    let self = this;
+    this.club.join(this.clubs[index]).subscribe(
       res => {
         console.log("join success!!!");
         let data:any = res.json();
         console.log(data);
+        self.router.navigate([""])
       },
       err => console.log(err)      
     );    
 
     // redirect
+    
+
   }
 
   onSubmit(form) {
     console.log("create club");  
-    console.log(form.value);  
-    this.club.createClub(form).subscribe(        
+    console.log(form.value.name);  
+    this.club.createClub(form.name).subscribe(        
       res => {
         console.log("create club res");
         let data:any = res.json;
