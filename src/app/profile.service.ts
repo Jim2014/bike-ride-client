@@ -8,7 +8,7 @@ export class ProfileService {
   constructor(private http: Http) {
   }
 
-  getProfile() {
+  getAllUsers() {
 
     return this.http.get('http://localhost:3000/users');
 
