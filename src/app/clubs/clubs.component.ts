@@ -28,7 +28,7 @@ export class ClubsComponent implements OnInit {
           console.log(data);
           self.clubs = data;   
           // self.canCreate = self.clubs.length == 0;     
-          self.curLocation = [position.coords.latitude, position.coords.latitude];         
+          self.curLocation = [position.coords.latitude, position.coords.longitude];         
         },
         err => console.log(err)
       )              
