@@ -13,7 +13,7 @@ export class ClubsComponent implements OnInit {
   
   clubName = "aa";
   canCreate = true;
-  
+  curLocation = [];
   constructor(public club:ClubsService, public router : Router) { }
 
   ngOnInit() {
@@ -27,8 +27,8 @@ export class ClubsComponent implements OnInit {
           console.log("update location");
           console.log(data);
           self.clubs = data;   
-          self.canCreate = self.clubs.length == 0;     
-                    
+          // self.canCreate = self.clubs.length == 0;     
+          self.curLocation = [position.coords.latitude, position.coords.latitude];         
         },
         err => console.log(err)
       )              

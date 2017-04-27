@@ -13,7 +13,7 @@
 
   <div>
   <li *ngFor="let e of (curClub.events)  let i = index;">
-    {{e}}
+    eventName : {{e.name}} || members: {{e.members.length}} || {{e.createTime}}
     <button value = "{{i}}" class="btn btn-primary" (click)="onclick_joinEvent(bbb.value)" #bbb>join this event!</button>
   </li>
 </div> 

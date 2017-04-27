@@ -4,4 +4,7 @@ export class EventModel {
     members: Array<string> = new Array<string>(); 
     createTime : Date;
     clubId : string;
+    constructor() {
+        
+    }
 }

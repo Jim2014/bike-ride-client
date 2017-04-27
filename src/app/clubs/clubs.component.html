@@ -1,7 +1,10 @@
 <div>
+  <h5 class="nickname">your current location is {{ curLocation | json }}</h5>
+  <label >nearby clubs: </label>
+  <br>
   <li *ngFor="let club of (clubs)  let i = index;">
-    {{club.name}}
-    <button value = "{{i}}" class="btn btn-primary" (click)="onclick_joinClub(bbb.value)" #bbb>join us!</button>
+    {{club.name}} | {{club.users.length}} members
+    <button value = "{{i}}"  (click)="onclick_joinClub(bbb.value)" #bbb>join us!</button>
   </li>
 </div> 
 

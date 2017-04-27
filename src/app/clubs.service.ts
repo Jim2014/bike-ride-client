@@ -45,6 +45,7 @@ export class ClubsService {
   }
 
   public getUserName() {
+    // return this.auth.userName;
     return "testUser" + Math.random() * 10;
   }
 
