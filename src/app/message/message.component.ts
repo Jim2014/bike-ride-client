@@ -24,12 +24,19 @@ export class MessageComponent implements OnInit {
     this.myName = auth.userName;
 
   }
+  
   ngOnInit() {
     var self = this;
-    if (self.myName)
+    if (self.auth.userProfile) {
+      self.myName = self.auth.userProfile.nickname;
       readHisChats(self.myName);
-    else
-      self.auth.logined.subscribe(response => readHisChats(response.userName));
+    } else {
+      self.auth.getProfile((err, profile) => {
+        self.myName = profile.nickname;
+        readHisChats(self.myName);
+      });
+    }
+    
     function readHisChats(userName) {
       self.myName = userName;
       console.log('', userName);
